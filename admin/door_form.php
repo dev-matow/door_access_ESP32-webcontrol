@@ -7,7 +7,7 @@ require_once __DIR__ . "/../config/security.php";
 require_once __DIR__ . "/auth.php";
 require_login();
 
-function generate_token(int $bytes = 32): string {
+function generate_token(int $bytes = 16): string {
   return bin2hex(random_bytes($bytes)); // 64 chars
 }
 
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $door_id_in = trim((string)($_POST['door_id'] ?? ''));
     if ($door_id_in === '') { $flash = ["type"=>"danger","msg"=>"door_id ไม่ถูกต้อง"]; }
     else {
-      $plain_token = generate_token(32);
+      $plain_token = generate_token(16);
       $hash = hash_door_token($plain_token);
       $pdo->prepare("UPDATE doors SET doors_token_hash=?, last_seen_at=last_seen_at WHERE door_id=?")->execute([$hash, $door_id_in]);
       $flash = ["type"=>"success","msg"=>"หมุน Token สำเร็จ (คัดลอก Token ไปใส่ ESP)"];
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $flash = ["type"=>"success","msg"=>"บันทึกข้อมูลประตูเรียบร้อย"];
       } else {
         // create ใหม่: สร้าง token
-        $plain_token = generate_token(32);
+        $plain_token = generate_token(16);
         $hash = hash_door_token($plain_token);
         $stmt = $pdo->prepare("INSERT INTO doors (door_id, door_name, location_path, doors_token_hash, is_default, status)
                                VALUES (?, ?, ?, ?, ?, ?)");

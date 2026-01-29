@@ -24,7 +24,7 @@ if ($door_id === "" || $card_uid === "" || $ts <= 0 || $doors_token === "") {
 
 // ---------- anti-replay (basic) ----------
 $now = time();
-if (abs($now - $ts) > 60) {
+if (abs($now - $ts) > 300) {
   $pdo->prepare("
     INSERT INTO access_logs (ts_client, door_id, card_uid, result, reason, ip_addr)
     VALUES (?, ?, ?, 'DENY', 'TS_EXPIRED', ?)

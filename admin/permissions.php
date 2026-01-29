@@ -21,6 +21,8 @@ $door_q = trim((string)($_GET['q'] ?? ""));          // search door
 $loc_q  = trim((string)($_GET['loc'] ?? ""));        // filter location_path
 
 $flash = null;
+$suppress_default = ($_SERVER['REQUEST_METHOD'] === 'POST');
+$auto_default = (isset($_GET['auto_default']) && $_GET['auto_default'] === '1');
 
 // -------------------------------
 // บันทึกสิทธิ์ (POST)
@@ -150,7 +152,7 @@ if ($card_uid_selected !== "") {
 // ถ้ายังไม่มีการตั้งสิทธิ์เลย ให้ติ๊ก default doors
 // -------------------------------
 $defaultPerm = [];
-if ($card_uid_selected !== "" && !$hasAnyPerm) {
+if ($card_uid_selected !== "" && !$hasAnyPerm && !$suppress_default && $auto_default) {
   foreach ($doors as $d) {
     if ((int)$d['is_default'] === 1 && $d['status'] === 'active') {
       $defaultPerm[$d['door_id']] = true;
