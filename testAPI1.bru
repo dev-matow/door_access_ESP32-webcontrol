@@ -1,0 +1,24 @@
+meta {
+  name: New HTTP Request
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://127.0.0.1/door_access_ESP32-webcontrol/api/access_check.php
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+   {
+      "door_id": "F1D001",
+      "card_uid": "123456",
+      "ts": 1769699904 ,
+      "doors_token": "8c577997c2f3942a3608118d2098c5e707f67af5d6ddda27670c42b139a7e4cf"
+    }
+}
