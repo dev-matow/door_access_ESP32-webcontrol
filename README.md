@@ -127,4 +127,5 @@ python api/app.py
 - ts ไม่ตรง: อุปกรณ์ต้อง sync เวลาให้ได้ก่อนส่ง API
 
 ## License
-GISDEV Team
+GISDEV Team Dev by dev-matow
+ 
