@@ -1,4 +1,12 @@
-﻿# Door Access ESP32 Web Control
+﻿# GISDEV Team
+![Login](images/login.png)
+
+![tests](https://img.shields.io/badge/tests-passing-brightgreen)
+![status](https://img.shields.io/badge/status-stable-blue)
+![version](https://img.shields.io/badge/version-1.5.0-blue)
+---
+
+# Door Access ESP32 Web Control
 
 ระบบควบคุมการเข้า-ออกประตูสำหรับ ESP32/ESP8266 พร้อมแผงผู้ดูแล (Admin) และ API แบบ JSON
 สร้างด้วย PHP + MySQL + Bootstrap 5 และมีตัวอย่างสเก็ตช์สำหรับ ESP8266 (Keypad)
@@ -119,4 +127,4 @@ python api/app.py
 - ts ไม่ตรง: อุปกรณ์ต้อง sync เวลาให้ได้ก่อนส่ง API
 
 ## License
-ยังไม่ได้ระบุ (เพิ่มได้ตามต้องการ)
+GISDEV Team
